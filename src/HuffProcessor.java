@@ -44,8 +44,7 @@ public class HuffProcessor {
 	public void compress(BitInputStream in, BitOutputStream out){
 		int[] counts = readForCounts(in); //helper method
 		HuffNode root = makeTreeFromCounts(counts); //helper method
-		String[] codings = new String[ALPH_SIZE+1];
-		makeCodingsFromTree(root, codings, ""); //helper method
+		String[] codings = makeCodingsFromTree(root); //helper method
 
 		out.writeBits(BITS_PER_INT, HUFF_TREE);
 		writeHeader(root,out); //helper method
