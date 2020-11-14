@@ -98,8 +98,8 @@ public class HuffProcessor {
 			codings[root.myValue] = path;
 			return;
 		} else {
-			makeCodingsFromTree(root.myLeft, codings, path + "0");
-			makeCodingsFromTree(root.myRight, codings, path + "1");
+			codingPath(root.myLeft, codings, path + "0");
+			codingPath(root.myRight, codings, path + "1");
 		}
 	}
 
