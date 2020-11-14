@@ -86,7 +86,13 @@ public class HuffProcessor {
 		return root;
 	}
 
-	private void makeCodingsFromTree(HuffNode root, String codings[], String path) {
+	private String[] makeCodingsFromTree(HuffNode root) {
+		String[] codings = new String[ALPH_SIZE+1];
+		codingPath(root, codings, "");
+		return codings;
+	}
+
+	private void codingPath(HuffNode root, String[] codings, String path){
 		if (root == null) return;
 
 		if (root.myLeft == null && root.myRight == null) {
@@ -114,7 +120,7 @@ public class HuffProcessor {
 			int bit = in.readBits(BITS_PER_WORD);
 			if(bit == -1) break;
 			String code = codings[bit];
-			if(code != null) out.writeBits(code.length(), Integer.parseInt(codings[PSEUDO_EOF], 2));
+			if(code != null) out.writeBits(code.length(), Integer.parseInt(code, 2));
 		}
 		String code = codings[PSEUDO_EOF];
 		out.writeBits(code.length(), Integer.parseInt(codings[PSEUDO_EOF], 2));
